@@ -1,0 +1,17 @@
+{
+  "name": "pdfgenerator",
+  "version": "1.0.0",
+  "description": "*Fabrizio Nastri, Feb 2023*",
+  "main": "docxtemplater.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "angular-expressions": "^1.2.1",
+    "docxtemplater": "^3.46.2",
+    "pdfkit": "^0.15.0",
+    "pizzip": "^3.1.6"
+  }
+}

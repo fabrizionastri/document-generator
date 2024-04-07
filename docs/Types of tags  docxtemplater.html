@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html><head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <base target="_blank">
+  <style>
+/* latin */
+@font-face {
+  font-family: 'Comic Neue';
+  font-style: normal;
+  font-weight: 400;
+  src: url(fonts/4UaHrEJDsxBrF37olUeD96rp57F2IwM.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* latin */
+@font-face {
+  font-family: 'Lexend Deca';
+  font-style: normal;
+  font-weight: 400;
+  src: url(fonts/K2FifZFYk-dHSE0UPPuwQ7CrD94i-NCKm-U48M1wqxnDirZPl3v-.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* latin */
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  src: url(fonts/pxiEyp8kv8JHgFVrJJfecnFHGPc.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+:root {
+  --fg: #000; /* foreground  */
+  --bg: #fff; /* background  */
+  --bd: #000; /* border  */
+  --lk: #006fa5; /* link */
+  --lkv: #d33bf0; /* link visited */
+  --hg: #ffff81; /* highlight  */
+}
+html {
+  overflow: overlay;
+}
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  margin: 30px auto 0 auto;
+  padding: 10px;
+  position: relative;
+
+  color: var(--fg);
+  border-color: var(--bd);
+  background-color: var(--bg);
+}
+body[data-mode$="dark"] {
+  --lk: #0096de;
+}
+body[data-mode="light"] {
+  color-scheme: light;
+  --fg: #222;
+  --bd: #222;
+  --bg: whitesmoke;
+}
+body[data-mode="dark"] {
+  color-scheme: dark;
+  --fg: #eee;
+  --bd: #eee;
+  --bg: #333;
+}
+body[data-mode="sepia"] {
+  color-scheme: light;
+  --fg: #5b4636;
+  --bd: #5b4636;
+  --bg: #f4ecd8;
+}
+body[data-mode="solarized-light"] {
+  color-scheme: light;
+  --fg: #586e75;
+  --bd: #586e75;
+  --bg: #fdf6e3;
+}
+body[data-mode="nord-light"] {
+  color-scheme: light;
+  --fg: #2e3440;
+  --bd: #2e3440;
+  --bg: #e5e9f0;
+}
+body[data-mode="groove-dark"] {
+  color-scheme: dark;
+  --fg: #cec4ac;
+  --bd: #cec4ac;
+  --bg: #282828;
+}
+body[data-mode="solarized-dark"] {
+  color-scheme: dark;
+  --fg: #839496;
+  --bd: #839496;
+  --bg: #002b36;
+}
+body[data-mode="nord-dark"] {
+  color-scheme: dark;
+  --fg: #e5e9f0;
+  --bd: #e5e9f0;
+  --bg: #2e3440;
+}
+
+@media print {
+  body[data-mode] {
+    --fg: #000;
+    --bd: #000;
+    --bg: #fff;
+
+    width: unset;
+    padding: 0;
+    margin: 0;
+  }
+}
+body[data-loaded=true] {
+  
+}
+img {
+  max-width: 100%;
+  height: auto;
+}
+img:not([width])[src$=".svg"] {
+  max-width: 100px;
+}
+body[data-images=false] canvas,
+body[data-images=false] svg,
+body[data-images=false] img {
+  display: none;
+}
+svg:not([width]):not([height]) {
+  max-width: 25vmin;
+}
+a {
+  color: var(--lk);
+  text-decoration: none;
+}
+a:visited {
+  color: var(--lkv);
+}
+
+hr {
+  background-color: var(--bd);
+  height: 1px;
+  border: 0;
+}
+#reader-domain {
+  font-family: Helvetica, Arial, sans-serif;
+  text-decoration: none;
+  border-bottom-color: currentcolor;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+  display: inline-block;
+  direction: ltr;
+}
+#reader-domain > span:first-child {
+  font-size: 1.1em;
+}
+#reader-domain > span:last-child {
+  font-size: 0.8em;
+}
+#reader-title {
+  font-size: 1.6em;
+  line-height: 1.25em;
+  width: 100%;
+  margin: 20px 0;
+  padding: 0;
+}
+#reader-credits,
+#doi,
+#published-time,
+#reader-estimated-time {
+  font-size: 0.85em;
+  line-height: 1.48em;
+  margin: 0 0 10px 0;
+  padding: 0;
+}
+#reader-credits:not(:empty)::after {
+  content: ' ⋮ ';
+}
+#published-time:not(:empty)::before {
+  content: ' ⋮ ';
+}
+#doi-json {
+  overflow: hidden;
+}
+#doi-json code {
+  overflow: auto;
+  max-height: 400px;
+}
+#published-time:empty,
+#reader-credits:empty {
+  display: none;
+}
+mark.hghlght {
+  background-color: var(--hg);
+}
+body:not([data-columns="1"]) .page :is(h1, h2) {
+  column-span: all;
+  background-color: rgba(125, 125, 125, 0.1);
+  padding: 10px;
+}
+.hidden {
+  display: none;
+}
+</style>
+  <style id="user-css">body {
+  padding-bottom: 64px;
+}
+pre {
+  white-space: pre-wrap;
+}
+pre code {
+  background-color: #eff0f1;
+  color: #393318;
+  font-family: monospace;
+  display: block;
+  padding: 5px 10px;
+}
+body[data-mode="dark"] pre code {
+  background-color: #585858;
+  color: #e8e8e8;
+}
+
+/* CSS for sans-serif fonts */
+body[data-font=sans-serif] {}
+/* CSS for serif fonts */
+body[data-font=serif] {}
+
+/* CSS for "sepia" theme */
+body[data-mode=sepia] {}
+/* CSS for "light" theme */
+body[data-mode=light] {}
+/* CSS for "dark" theme */
+body[data-mode=dark] {}</style>
+<title>Types of tags | docxtemplater</title><title>Types of tags | docxtemplater :: Reader View</title></head>
+<body tabindex="1" data-images="true" data-mode="sepia" data-font="sans-serif" data-columns="1" data-loaded="true">
+  <span></span> <!-- for IntersectionObserver -->
+  <a id="reader-domain" href="https://docxtemplater.com/docs/tag-types/">
+    <span>docxtemplater.com</span>
+    <span>/docs/tag-types/</span>
+  </a>
+  <h1 dir="auto" id="reader-title">Types of tags | docxtemplater</h1>
+  <span dir="auto" id="reader-credits">Edgar Hipp</span>
+  <span dir="auto" id="reader-estimated-time">7-8 minutes</span>
+  <span dir="auto" id="published-time"></span>
+  <hr>
+  <div id="readability-page-1" class="page"><div><p>The syntax of docxtemplater tags is inspired by the language agnostic <a href="https://mustache.github.io/">Mustache</a> specification.</p><p>Normal tags start with an alphabetical character, and other types of tags start with special prefixes, for example :</p><ul><li><code>{#loop}</code> and <code>{/loop}</code> to start and close a tag for the data part "loop"</li><li><code>{@input}</code> to insert raw XML data</li><li>when using the image-module <code>{%src_url}</code> will add an image for the "src_url" data part.</li></ul><h3><a href="#introduction">Introduction</a></h3><p>With this template (input.docx):</p><p>And given the following data (data.json):</p><pre><code>{
+    <span>name</span>: <span>"John"</span>;
+}
+</code></pre><p>docxtemplater will produce (output.docx):</p><h3><a href="#conditions">Conditions</a></h3><p>Conditions start with a pound and end with a slash. That is <code>{#hasKitty}</code> starts a condition and <code>{/hasKitty}</code> ends it.</p><div><p>{#hasKitty}Cat’s name: {kitty}{/hasKitty}<br>{#hasDog}Dog’s name: {dog}{/hasDog}<br></p></div><p>and this data:</p><pre><code>{
+    <span>"hasKitty"</span>: <span>true</span>,
+    <span>"kitty"</span>: <span>"Minie"</span>
+    <span>"hasDog"</span>: <span>false</span>,
+    <span>"dog"</span>: <span>null</span>
+}
+</code></pre><p>renders the following:</p><p>For a more detailled explanation about Conditions, have a look at <a href="#sections">Sections</a></p><p>You can also have "else" blocks with <a href="#inverted-sections">Inverted Sections</a></p><h3><a href="#loops">Loops</a></h3><p>In docxtemplater, conditions and loops use the same syntax called Sections</p><p>The following template:</p><div><p>{#products}<br>{name}, {price} €<br>{/products}<br></p></div><p>Given the following data:</p><pre><code>{
+    <span>"products"</span>: [
+        { <span>name</span>: <span>"Windows"</span>, <span>price</span>: <span>100</span> },
+        { <span>name</span>: <span>"Mac OSX"</span>, <span>price</span>: <span>200</span> },
+        { <span>name</span>: <span>"Ubuntu"</span>, <span>price</span>: <span>0</span> }
+    ]
+}
+</code></pre><p>will render :</p><div><p>Windows, 100 €<br>Mac OSX, 200 €<br>Ubuntu, 0€<br></p></div><p>To loop over an array containing primitive data (eg string):</p><pre><code>{
+   <span>"products"</span>: [
+       <span>"Windows"</span>,
+       <span>"Mac OSX"</span>,
+       <span>"Ubuntu"</span>
+   ]
+}
+</code></pre><div><p>{#products} {.} {/products}<br></p></div><p>Will result in:</p><h3><a href="#sections">Sections</a></h3><p>A section begins with a pound and ends with a slash. That is {#person} begins a "person" section while {/person} ends it.</p><p>The section behaves in the following way:</p><table><thead><tr><th>Type of the value</th><th>the section is shown</th><th>scope</th></tr></thead><tbody><tr><td>falsy or empty array</td><td>never</td><td>NA</td></tr><tr><td>non empty array</td><td>for each element of array</td><td>element of array</td></tr><tr><td>object</td><td>once</td><td>the object</td></tr><tr><td>other truthy value</td><td>once</td><td>unchanged</td></tr></tbody></table><p>This table shows for each type of value, what is the condition for the section to be changed and what is the scope of that section.</p><p>If the value is of type <strong>boolean</strong>, the section is shown <strong>once if the value is true</strong>, and the scope of the section is <strong>unchanged</strong>.</p><p>If we have the section</p><div><p>{#hasProduct}<br>{price} €<br>{/hasProduct}<br></p></div><p>Given the following data:</p><pre><code>{
+    <span>"hasProduct"</span>: <span>true</span>,
+    <span>"price"</span>: <span>10</span>
+}
+</code></pre><p>Since hasProduct is a boolean, the section is shown once if <code>hasProduct</code> is <code>true</code>. Since the scope is unchanged, the subsection <code>{price} €</code> will render as [10 €]</p><h3><a href="#creating-multiple-table-rows">Creating multiple table rows</a></h3><p>It is possible to create multiple rows in a table</p><div><table><thead><tr><th>Name</th><th>Age</th><th>Phone Number</th></tr></thead><tbody><tr><td>{#users}{name}</td><td>{age}</td><td>{phone}{/}</td></tr></tbody></table></div><pre><code>{
+    <span>users</span>: [
+        { <span>name</span>: <span>"John"</span>, <span>age</span>: <span>22</span>, <span>phone</span>: <span>"+33653454343"</span> },
+        { <span>name</span>: <span>"Mary"</span>, <span>age</span>: <span>25</span>, <span>phone</span>: <span>"+33666666666"</span> },
+    ],
+}
+</code></pre><p>Will render the following :</p><div><table><thead><tr><th>Name</th><th>Age</th><th>Phone Number</th></tr></thead><tbody><tr><td>John</td><td>22</td><td>+33653454343</td></tr><tr><td>Mary</td><td>25</td><td>+33666666666</td></tr></tbody></table></div><h3><a href="#inverted-sections">Inverted Sections</a></h3><p>An inverted section begins with a caret (hat) and ends with a slash. That is {^person} begins a "person" inverted section while {/person} ends it.</p><p>While sections can be used to render text one or more times based on the value of the key, inverted sections may render text once based on the inverse value of the key. That is, they will be rendered if the key doesn't exist, is false, or is an empty list. The scope of an inverted section is unchanged.</p><p>Template:</p><div><p>{#repo}<br>Repo name : {name}<br>{/repo}<br>{^repo}<br>No repos :(<br>{/repo}<br></p></div><p>Data:</p><pre><code>{
+  <span>"repo"</span>: []
+}
+</code></pre><p>Output:</p><h3><a href="#sections-and-newlines">Sections and newlines</a></h3><p>New lines are kept inside sections, so the template:</p><div><p>{#repo}<br>{name}&gt;<br>{/repo}<br>{^repo}<br>No repos :(<br>{/repo}<br></p></div><p>Data:</p><pre><code>{
+  <span>"repo"</span>: [
+      {<span>name</span>: <span>"John"</span>},
+      {<span>name</span>: <span>"Jane"</span>},
+  ]
+}
+</code></pre><p>Will actually render</p><p>(where NL represents an emptyline)</p><p>The easiest to make this work is to enable the paragraphLoop option, like this :</p><pre><code><span>// Now, all sections in the form of :</span>
+<span>// {#section}</span>
+<span>// something</span>
+<span>// {/section}</span>
+<span>// will keep just the inner paragraphs, and drop the newlines of the outer section</span>
+<span>const</span> doc = <span>new</span> <span>Docxtemplater</span>(zip, { <span>paragraphLoop</span>: <span>true</span> });
+</code></pre><p>An other less recommended way if you don't want to set this option, is to remove the new lines after the start of the section and before the end of the section.</p><p>For our example , that would be:</p><div><p>{#repo} {name}<br>{/repo} {^repo} No repos :( {/repo}<br></p></div><h3><a href="#raw-xml">Raw XML</a></h3><p>It is possible to insert raw (unescaped) XML, for example to render a complex table, an equation, …</p><p>With the <code>rawXML</code> syntax the whole current paragraph (<code>w:p</code>) is replaced by the XML passed in the value.</p><p>with this data:</p><pre><code>doc.<span>render</span>({
+    <span>rawXml</span>: <span>`
+    &lt;w:p&gt;
+        &lt;w:pPr&gt;
+            &lt;w:rPr&gt;
+                &lt;w:color w:val="FF0000"/&gt;
+            &lt;/w:rPr&gt;
+        &lt;/w:pPr&gt;
+        &lt;w:r&gt;
+            &lt;w:rPr&gt;
+                &lt;w:color w:val="FF0000"/&gt;
+            &lt;/w:rPr&gt;
+            &lt;w:t&gt;
+                My custom
+            &lt;/w:t&gt;
+        &lt;/w:r&gt;
+        &lt;w:r&gt;
+            &lt;w:rPr&gt;
+                &lt;w:color w:val="00FF00"/&gt;
+            &lt;/w:rPr&gt;
+            &lt;w:t&gt;
+                XML
+            &lt;/w:t&gt;
+        &lt;/w:r&gt;
+    &lt;/w:p&gt;
+    `</span>,
+});
+</code></pre><p>This will loop over the first parent <code>&lt;w:p&gt;</code> tag</p><p>If you want to insert HTML styled input, you can also use the <a href="https://docxtemplater.com/modules/html/">docxtemplater html module</a></p><h3><a href="#lambdas">Lambdas</a></h3><pre><code><span>const</span> doc = <span>new</span> <span>Docxtemplater</span>(zip);
+doc.<span>render</span>({
+    <span>userGreeting</span>: <span>(<span>scope</span>) =&gt;</span> {
+        <span>return</span> <span>"How is it going, "</span> + scope.<span>user</span> + <span>" ?"</span>;
+    },
+    <span>users</span>: [
+        {
+            <span>name</span>: <span>"John"</span>,
+        },
+        {
+            <span>name</span>: <span>"Mary"</span>,
+        },
+    ],
+});
+</code></pre><p>with the following template :</p><div><p>{#users}{userGreeting}{/}<br></p></div><p>will render :</p><div><p>How is it going, John ?<br>How is it going, Mary ?<br></p></div><p>It will call the function userGreeting twice (one for the user "John", and for the user "Mary"), with the current scope as first argument, and the scopeManager as the second argument.</p><h3><a href="#set-delimiter">Set Delimiter</a></h3><p>Set Delimiter tags start and end with an equal sign and change the tag delimiters from { and } to custom strings.</p><p>Consider the following contrived example:</p><div><p>* {default_tags}<br>{=&lt;% %&gt;=}<br>* &lt;% erb_style_tags %&gt;<br>&lt;%={ }=%&gt;<br>* { default_tags_again }<br></p></div><p>Here we have a list with three items. The first item uses the default tag style, the second uses erb style as defined by the Set Delimiter tag, and the third returns to the default style after yet another Set Delimiter declaration.</p><p>Custom delimiters may not contain whitespace or the equals sign.</p><p>It is also possible to <a href="https://docxtemplater.com/docs/configuration#custom-delimiters">change the delimiters globally by using docxtemplater options object</a>.</p><h3><a href="#dash-syntax">Dash syntax</a></h3><p>When using sections, docxtemplater will try to find on what element to loop over by itself:</p><p>If between the two tags {#tag}______{/tag}</p><ul><li>there is a table cell tag (<code>&lt;w:tc&gt;</code> or <code>&lt;a:tc&gt;</code>) , that means that your loop is inside a table, and it will expand the loop over the table row (<code>&lt;w:tr&gt;</code> or <code>&lt;a:tr&gt;</code>).</li><li>in other cases it will not expand the loop</li></ul><p>With the Dash syntax you can specify the tag you want to loop on: For example, if you want to loop on paragraphs (<code>w:p</code>), so that each item in the loop creates a new paragraph, you can write:</p><div><p>{-w:p loop} {inner} {/loop}<br></p></div></div></div>
+  <span></span> <!-- for IntersectionObserver -->
+  
+  
+  
+  
+
+
+<style id="note-styling">
+    .note {
+      position: absolute;
+      z-index: 10;
+      border: none;
+      outline: none;
+      font-family: inherit;
+      font-size: inherit;
+      padding: 5px;
+      min-width: 32px;
+      min-height: 32px;
+    }
+    .note:focus {
+      z-index: 11;
+    }
+    .note[type="0"] {
+      background-color: #fff740;
+      color: #2c2c2d;
+    }
+    .note[type="0"]::placeholder {
+      color: #868226;
+    }
+    .note[type="1"] {
+      background-color: #feff9c;
+      color: #2c2c2d;
+    }
+    .note[type="1"]::placeholder {
+      color: #6d6d3d;
+    }
+    .note[type="2"] {
+      background-color: #ff65a3;
+      color: #2c2c2d;
+    }
+    .note[type="2"]::placeholder {
+      color: #65263f;
+    }
+    .note[type="3"] {
+      background-color: #ff7eb9;
+      color: #2c2c2d;
+    }
+    .note[type="3"]::placeholder {
+      color: #562b3f;
+    }
+    .note[type="4"] {
+      background-color: #7afcff;
+      color: #295c5d;
+    }
+    .note[type="4"]::placeholder {
+      color: #377677;
+    }</style></body><style>body {
+      font-size:  15px;
+      font-family: Helvetica, Arial, sans-serif;
+      width: 600px;
+    }
+    p {
+      text-align: justify
+    }
+    .page {
+      line-height: 22.5px;
+      column-count: unset;
+    }
+    h1, h2, h3 {
+      line-height: initial;
+    }</style></html>

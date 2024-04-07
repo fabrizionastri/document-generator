@@ -1,0 +1,25 @@
+{
+  "includePhone": false,
+  "overall": "Universe",
+  "contacts": [
+    {
+      "organization_name": "Global Solutions",
+      "email": "plop@gmail.com",
+      "type": "organization",
+      "phone": "0652455478",
+      "price": 1000
+    },
+    {
+      "first_name": "John",
+      "last_name": "Doe",
+      "type": "individual",
+      "email": "prout@gmail.com",
+      "phone": "1231231321",
+      "price": 123
+    }
+  ],
+  "ages": [
+    18,
+    99
+  ]
+}

@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html><head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <base target="_blank">
+  <style>
+/* latin */
+@font-face {
+  font-family: 'Comic Neue';
+  font-style: normal;
+  font-weight: 400;
+  src: url(fonts/4UaHrEJDsxBrF37olUeD96rp57F2IwM.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* latin */
+@font-face {
+  font-family: 'Lexend Deca';
+  font-style: normal;
+  font-weight: 400;
+  src: url(fonts/K2FifZFYk-dHSE0UPPuwQ7CrD94i-NCKm-U48M1wqxnDirZPl3v-.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* latin */
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  src: url(fonts/pxiEyp8kv8JHgFVrJJfecnFHGPc.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+:root {
+  --fg: #000; /* foreground  */
+  --bg: #fff; /* background  */
+  --bd: #000; /* border  */
+  --lk: #006fa5; /* link */
+  --lkv: #d33bf0; /* link visited */
+  --hg: #ffff81; /* highlight  */
+}
+html {
+  overflow: overlay;
+}
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  margin: 30px auto 0 auto;
+  padding: 10px;
+  position: relative;
+
+  color: var(--fg);
+  border-color: var(--bd);
+  background-color: var(--bg);
+}
+body[data-mode$="dark"] {
+  --lk: #0096de;
+}
+body[data-mode="light"] {
+  color-scheme: light;
+  --fg: #222;
+  --bd: #222;
+  --bg: whitesmoke;
+}
+body[data-mode="dark"] {
+  color-scheme: dark;
+  --fg: #eee;
+  --bd: #eee;
+  --bg: #333;
+}
+body[data-mode="sepia"] {
+  color-scheme: light;
+  --fg: #5b4636;
+  --bd: #5b4636;
+  --bg: #f4ecd8;
+}
+body[data-mode="solarized-light"] {
+  color-scheme: light;
+  --fg: #586e75;
+  --bd: #586e75;
+  --bg: #fdf6e3;
+}
+body[data-mode="nord-light"] {
+  color-scheme: light;
+  --fg: #2e3440;
+  --bd: #2e3440;
+  --bg: #e5e9f0;
+}
+body[data-mode="groove-dark"] {
+  color-scheme: dark;
+  --fg: #cec4ac;
+  --bd: #cec4ac;
+  --bg: #282828;
+}
+body[data-mode="solarized-dark"] {
+  color-scheme: dark;
+  --fg: #839496;
+  --bd: #839496;
+  --bg: #002b36;
+}
+body[data-mode="nord-dark"] {
+  color-scheme: dark;
+  --fg: #e5e9f0;
+  --bd: #e5e9f0;
+  --bg: #2e3440;
+}
+
+@media print {
+  body[data-mode] {
+    --fg: #000;
+    --bd: #000;
+    --bg: #fff;
+
+    width: unset;
+    padding: 0;
+    margin: 0;
+  }
+}
+body[data-loaded=true] {
+  
+}
+img {
+  max-width: 100%;
+  height: auto;
+}
+img:not([width])[src$=".svg"] {
+  max-width: 100px;
+}
+body[data-images=false] canvas,
+body[data-images=false] svg,
+body[data-images=false] img {
+  display: none;
+}
+svg:not([width]):not([height]) {
+  max-width: 25vmin;
+}
+a {
+  color: var(--lk);
+  text-decoration: none;
+}
+a:visited {
+  color: var(--lkv);
+}
+
+hr {
+  background-color: var(--bd);
+  height: 1px;
+  border: 0;
+}
+#reader-domain {
+  font-family: Helvetica, Arial, sans-serif;
+  text-decoration: none;
+  border-bottom-color: currentcolor;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+  display: inline-block;
+  direction: ltr;
+}
+#reader-domain > span:first-child {
+  font-size: 1.1em;
+}
+#reader-domain > span:last-child {
+  font-size: 0.8em;
+}
+#reader-title {
+  font-size: 1.6em;
+  line-height: 1.25em;
+  width: 100%;
+  margin: 20px 0;
+  padding: 0;
+}
+#reader-credits,
+#doi,
+#published-time,
+#reader-estimated-time {
+  font-size: 0.85em;
+  line-height: 1.48em;
+  margin: 0 0 10px 0;
+  padding: 0;
+}
+#reader-credits:not(:empty)::after {
+  content: ' ⋮ ';
+}
+#published-time:not(:empty)::before {
+  content: ' ⋮ ';
+}
+#doi-json {
+  overflow: hidden;
+}
+#doi-json code {
+  overflow: auto;
+  max-height: 400px;
+}
+#published-time:empty,
+#reader-credits:empty {
+  display: none;
+}
+mark.hghlght {
+  background-color: var(--hg);
+}
+body:not([data-columns="1"]) .page :is(h1, h2) {
+  column-span: all;
+  background-color: rgba(125, 125, 125, 0.1);
+  padding: 10px;
+}
+.hidden {
+  display: none;
+}
+</style>
+  <style id="user-css">body {
+  padding-bottom: 64px;
+}
+pre {
+  white-space: pre-wrap;
+}
+pre code {
+  background-color: #eff0f1;
+  color: #393318;
+  font-family: monospace;
+  display: block;
+  padding: 5px 10px;
+}
+body[data-mode="dark"] pre code {
+  background-color: #585858;
+  color: #e8e8e8;
+}
+
+/* CSS for sans-serif fonts */
+body[data-font=sans-serif] {}
+/* CSS for serif fonts */
+body[data-font=serif] {}
+
+/* CSS for "sepia" theme */
+body[data-mode=sepia] {}
+/* CSS for "light" theme */
+body[data-mode=light] {}
+/* CSS for "dark" theme */
+body[data-mode=dark] {}</style>
+<title>Angular parser | docxtemplater</title><title>Angular parser | docxtemplater :: Reader View</title></head>
+<body tabindex="1" data-images="true" data-mode="sepia" data-font="sans-serif" data-columns="1" data-loaded="true">
+  <span></span> <!-- for IntersectionObserver -->
+  <a id="reader-domain" href="https://docxtemplater.com/docs/angular-parse/#angular-parser">
+    <span>docxtemplater.com</span>
+    <span>/docs/angular-parse/</span>
+  </a>
+  <h1 dir="auto" id="reader-title">Angular parser | docxtemplater</h1>
+  <span dir="auto" id="reader-credits">Edgar Hipp</span>
+  <span dir="auto" id="reader-estimated-time">8-10 minutes</span>
+  <span dir="auto" id="published-time"></span>
+  <hr>
+  <div id="readability-page-1" class="page"><div><p>The angular-parser makes creating complex templates easier. It allows for example:</p><p>To access the nested name property in the following data:</p><pre><code>{
+    <span>user</span>: {
+        <span>name</span>: <span>"John"</span>;
+    }
+}
+</code></pre><p>You can also use <code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, <code>&gt;</code>, <code>&lt;</code>, <code>==</code>, <code>!=</code>, <code>&lt;=</code>, <code>&gt;=</code> operators.</p><h3><a href="#setup">Setup</a></h3><p>First install angular-expressions which is required to make the parser work :</p><pre><code>npm install --save angular-expressions
+</code></pre><p>Then use following code :</p><pre><code><span>const</span> expressionParser = <span>require</span>(<span>"docxtemplater/expressions.js"</span>);
+<span>const</span> doc = <span>new</span> <span>Docxtemplater</span>(zip, { <span>parser</span>: expressionParser });
+doc.<span>render</span>(<span>/* data */</span>);
+</code></pre><p>If running in IE 11 or if you get the error <code>Proxy is not defined</code>, you can use the following parser instead :</p><pre><code><span>const</span> expressionParser = <span>require</span>(<span>"docxtemplater/expressions-ie11.js"</span>);
+<span>const</span> doc = <span>new</span> <span>Docxtemplater</span>(zip, { <span>parser</span>: expressionParser });
+doc.<span>render</span>(<span>/* data */</span>);
+</code></pre><p>This require call works only with docxtemplater 3.32.3. If you have to use an older version of docxtemplater, <a href="https://github.com/open-xml-templating/docxtemplater/blob/master/es6/expressions.js">copy this code</a></p><h3><a href="#conditions">Conditions</a></h3><p>With the angular expression option set, you can also use conditions:</p><div><p>{#users.length&gt;1}<br>There are multiple users<br>{/}</p><p>{#users[0].name == "John"}<br>Hello {users[0].name}, welcome back<br>{/}</p></div><p>The first conditional will render the section only if there are 2 users or more.</p><p>The second conditional will render the section only if the first user has the name "John".</p><p>The angular parser handles the following operators :</p><ul><li>TERNARIES <code>a ? b : c</code></li><li>EQUALITY/INEQUALITY <code>a == 1</code>, <code>a != 1</code></li><li>RELATIONAL <code>a &gt; 1</code>, <code>a &lt; 1</code>, <code>a &gt;= 1</code>, <code>a &lt;= 1</code></li><li>AND <code>a &amp;&amp; b</code></li><li>OR <code>a || b</code></li><li>ADDITION <code>a + b</code></li><li>SUBSTRACTION <code>a - b</code></li><li>MULTIPLICATION <code>a * b</code></li><li>MODULO <code>a % b</code></li><li>DIVISION <code>a / b</code></li><li>ASSIGNMENTS <code>a = 1</code></li><li>OPERATOR PRECEDENCE with parenthesis <code>(a &amp;&amp; b) || c</code></li><li>EXPONENTIAL NUMBERS : <code>12e3</code> =&gt; returns 12000</li></ul><p>For example, it is possible to write the following template:</p><div><p>{#myType === "users"}<br>There are {users.length} users.<br>{#cond1 || cond2}<br>Paragraph 1<br>{/}<br>{#cond2 &amp;&amp; cond3}<br>Paragraph 2<br>{/}<br>{#cond4 ? users : usersWithAdminRights}<br>Paragraph 3<br>{/}<br>{/}<br></p></div><h3><a href="#filters">Filters</a></h3><p>With filters, it is possible to write the following template to have the resulting string be uppercased:</p><pre><code><span>const</span> expressionParser = <span>require</span>(<span>"docxtemplater/expressions.js"</span>);
+expressionParser.<span>filters</span>.<span>upper</span> = <span>function</span> (<span>input</span>) {
+    <span>// Make sure that if your input is undefined, your</span>
+    <span>// output will be undefined as well and will not</span>
+    <span>// throw an error</span>
+    <span>if</span> (!input) <span>return</span> input;
+    <span>return</span> input.<span>toUpperCase</span>();
+};
+<span>new</span> <span>Docxtemplater</span>(zip, { <span>parser</span>: expressionParser });
+</code></pre><p>More complex filters are possible, for example, if you would like to list the names of all active users. If your data is the following:</p><pre><code>{
+    <span>users</span>: [
+        {
+            <span>name</span>: <span>"John"</span>,
+            <span>age</span>: <span>15</span>,
+        },
+        {
+            <span>name</span>: <span>"Mary"</span>,
+            <span>age</span>: <span>26</span>,
+        }
+    ],
+}
+</code></pre><p>You could show the list of users that are older than 18, by writing the following code:</p><pre><code><span>const</span> expressionParser = <span>require</span>(<span>"docxtemplater/expressions.js"</span>);
+expressionParser.<span>filters</span>.<span>olderThan</span> = <span>function</span> (<span>users, minAge</span>) {
+    <span>// Make sure that if your input is undefined, your</span>
+    <span>// output will be undefined as well and will not</span>
+    <span>// throw an error</span>
+    <span>if</span> (!users) <span>return</span> users;
+    <span>return</span> users.<span>filter</span>(<span>function</span> (<span>user</span>) {
+        <span>return</span> user.<span>age</span> &gt;= minAge;
+    });
+};
+<span>new</span> <span>Docxtemplater</span>(zip, { <span>parser</span>: expressionParser });
+</code></pre><p>And in your template,</p><div><p>The allowed users are:</p><p>{#users | olderThan:15}<br>{name} - {age} years old<br>{/}</p></div><p>There are some interesting usecases for filters</p><h4><a href="#data-filtering">Data filtering</a></h4><p>You can write some generic data filters using angular expressions inside the filter itself.</p><pre><code>{
+    <span>users</span>: [
+        {
+            <span>name</span>: <span>"John"</span>,
+            <span>age</span>: <span>10</span>,
+        },
+        {
+            <span>name</span>: <span>"Mary"</span>,
+            <span>age</span>: <span>20</span>,
+        },
+    ];
+}
+</code></pre><div><p>{#users | where:'age &gt; 15'}<br>Hello {name}<br>{/}<br></p></div><p>The argument inside the where filter can be any other angular expression, with ||, &amp;&amp;, etc</p><p>The code for this filter is extremely terse, and gives a lot of possibilities:</p><pre><code><span>const</span> expressionParser = <span>require</span>(<span>"docxtemplater/expressions.js"</span>);
+expressionParser.<span>filters</span>.<span>where</span> = <span>function</span> (<span>input, query</span>) {
+    <span>return</span> input.<span>filter</span>(<span>function</span> (<span>item</span>) {
+        <span>return</span> expressions.<span>compile</span>(query)(item);
+    });
+};
+<span>new</span> <span>Docxtemplater</span>(zip, { <span>parser</span>: expressionParser });
+</code></pre><h4><a href="#data-sorting">Data sorting</a></h4><p>If your data is the following:</p><pre><code><span>{</span>
+    <span>"items"</span><span>:</span> <span>[</span>
+        <span>{</span>
+            <span>"name"</span><span>:</span> <span>"Acme Computer"</span><span>,</span>
+            <span>"price"</span><span>:</span> <span>1000</span>
+        <span>}</span><span>,</span>
+        <span>{</span>
+            <span>"name"</span><span>:</span> <span>"USB storage"</span><span>,</span>
+            <span>"price"</span><span>:</span> <span>15</span>
+        <span>}</span><span>,</span>
+        <span>{</span>
+            <span>"name"</span><span>:</span> <span>"Mouse &amp; Keyboard"</span><span>,</span>
+            <span>"price"</span><span>:</span> <span>150</span>
+        <span>}</span>
+    <span>]</span>
+<span>}</span>
+</code></pre><p>You might want to sort the items by price (ascending).</p><p>You could do that again with a filter, like this:</p><div><p>{#items | sortBy:'price'}<br>{name} for a price of {price} €<br>{/}<br></p></div><p>The code for this filter is:</p><pre><code><span>const</span> { sortBy } = <span>require</span>(<span>"lodash"</span>);
+expressionParser.<span>filters</span>.<span>sortBy</span> = <span>function</span> (<span>input, ...fields</span>) {
+    <span>// In our example fields is ["price"]</span>
+
+    <span>// Make sure that if your input is undefined, your</span>
+    <span>// output will be undefined as well and will not</span>
+    <span>// throw an error</span>
+    <span>if</span> (!input) <span>return</span> input;
+    <span>return</span> <span>sortBy</span>(input, fields);
+};
+</code></pre><h4><a href="#multi-level-loops">Multi level loops</a></h4><p>It is possible to have multilevel loops (also called nested loops), if your data is the following :</p><pre><code><span>{</span>
+    <span>"companies"</span><span>:</span> <span>[</span>
+        <span>{</span>
+            <span>"name"</span><span>:</span> <span>"EvilCorp"</span><span>,</span>
+            <span>"users"</span><span>:</span> <span>[</span>
+                <span>{</span>
+                    <span>"firstName"</span><span>:</span> <span>"John"</span>
+                <span>}</span><span>,</span>
+                <span>{</span>
+                    <span>"firstName"</span><span>:</span> <span>"Mary"</span>
+                <span>}</span>
+            <span>]</span>
+        <span>}</span><span>,</span>
+        <span>{</span>
+            <span>"name"</span><span>:</span> <span>"HeavenCorp"</span><span>,</span>
+            <span>"users"</span><span>:</span> <span>[</span>
+                <span>{</span>
+                    <span>"firstName"</span><span>:</span> <span>"Jack"</span>
+                <span>}</span><span>,</span>
+                <span>{</span>
+                    <span>"firstName"</span><span>:</span> <span>"Bonnie"</span>
+                <span>}</span>
+            <span>]</span>
+        <span>}</span>
+    <span>]</span>
+<span>}</span>
+</code></pre><p>You can loop on companies.users directly using following tag and filter :</p><div><p>{#companies | loop:'users'}<br>{firstName}<br>{/}<br></p></div><pre><code><span>const</span> expressionParser = <span>require</span>(<span>"docxtemplater/expressions.js"</span>);
+expressionParser.<span>filters</span>.<span>loop</span> = <span>function</span> (<span>input, ...keys</span>) {
+    <span>const</span> result = input.<span>reduce</span>(<span>function</span> (<span>result, item</span>) {
+        (item[keys[<span>0</span>]] || []).<span>forEach</span>(<span>function</span> (<span>subitem</span>) {
+            result.<span>push</span>({ ...item, ...subitem });
+        });
+        <span>return</span> result;
+    }, []);
+    <span>if</span> (keys.<span>length</span> === <span>1</span>) {
+        <span>return</span> result;
+    }
+    keys.<span>shift</span>();
+    <span>return</span> expressionParser.<span>filters</span>.<span>loop</span>(result, ...keys);
+};
+</code></pre><p>With this code, you can also have more nesting if needed :</p><pre><code><span>{#<span>companies</span> | loop:<span>"users"</span>:<span>"tasks"</span>}</span><span>{/}</span><span>
+</span></code></pre><h4><a href="#data-aggregation">Data aggregation</a></h4><p>If your data is the following:</p><pre><code><span>{</span>
+    <span>"items"</span><span>:</span> <span>[</span>
+        <span>{</span>
+            <span>"name"</span><span>:</span> <span>"Acme Computer"</span><span>,</span>
+            <span>"price"</span><span>:</span> <span>1000</span>
+        <span>}</span><span>,</span>
+        <span>{</span>
+            <span>"name"</span><span>:</span> <span>"Mouse &amp; Keyboard"</span><span>,</span>
+            <span>"price"</span><span>:</span> <span>150</span>
+        <span>}</span>
+    <span>]</span>
+<span>}</span>
+</code></pre><p>And you would like to show the total price, you can write in your template:</p><div><p>{#items}<br>{name} for a price of {price} €<br>{/}<br>Total Price of your purchase: {items | sumby:'price'}€<br></p></div><p>The <code>sumby</code> is a filter that you can write like this:</p><pre><code>expressionParser.<span>filters</span>.<span>sumby</span> = <span>function</span> (<span>input, field</span>) {
+    <span>// In our example field is the string "price"</span>
+
+    <span>// Make sure that if your input is undefined, your</span>
+    <span>// output will be undefined as well and will not</span>
+    <span>// throw an error</span>
+    <span>if</span> (!input) <span>return</span> input;
+
+    <span>return</span> input.<span>reduce</span>(<span>function</span> (<span>sum, object</span>) {
+        <span>return</span> sum + object[field];
+    }, <span>0</span>);
+};
+</code></pre><h4><a href="#data-formatting">Data formatting</a></h4><p>This example is to format numbers in the format: "150.00" (2 digits of precision) If your data is the following:</p><pre><code><span>{</span>
+    <span>"items"</span><span>:</span> <span>[</span>
+        <span>{</span>
+            <span>"name"</span><span>:</span> <span>"Acme Computer"</span><span>,</span>
+            <span>"price"</span><span>:</span> <span>1000</span>
+        <span>}</span><span>,</span>
+        <span>{</span>
+            <span>"name"</span><span>:</span> <span>"Mouse &amp; Keyboard"</span><span>,</span>
+            <span>"price"</span><span>:</span> <span>150</span>
+        <span>}</span>
+    <span>]</span>
+<span>}</span>
+</code></pre><p>And you would like to show the price with two digits of precision, you can write in your template:</p><div><p>{#items}<br>{name} for a price of {price | toFixed:2} €<br>{/}<br></p></div><p>The <code>toFixed</code> is an angular filter that you can write like this:</p><pre><code>expressionParser.<span>filters</span>.<span>toFixed</span> = <span>function</span> (<span>input, precision</span>) {
+    <span>// In our example precision is the integer 2</span>
+
+    <span>// Make sure that if your input is undefined, your</span>
+    <span>// output will be undefined as well and will not</span>
+    <span>// throw an error</span>
+    <span>if</span> (!input) <span>return</span> input;
+
+    <span>return</span> input.<span>toFixed</span>(precision);
+};
+</code></pre><h3><a href="#assignments">Assignments</a></h3><p>With the angular expression option, it is possible to assign a value to a variable directly from your template.</p><p>For example, in your template, write:</p><div><p>xxx<br>{full_name = first_name + last_name}<br>yyy<br></p></div><p>This will show in your output :</p><p>To drop the new line, use a raw tag instead, starting with a @ :</p><div><p>xxx<br>{@full_name = first_name + last_name}<br>yyy<br></p></div><p>Output :</p><h3><a href="#retrieving-index-as-part-of-an-expression">Retrieving $index as part of an expression</a></h3><p>One might need to have a condition on the $index when inside a loop.</p><p>For example, if you have two arrays of the same length and you want to loop over both of them at the same time:</p><pre><code>{
+    <span>names</span>: [<span>"John"</span>, <span>"Mary"</span>],
+    <span>ages</span>: [<span>15</span>, <span>26</span>]
+}
+</code></pre><div><p>{#names}<br>{#$index == 0}First item !{/}<br>{names[$index]}<br>{ages[$index]}<br>{/names}<br></p></div></div></div>
+  <span></span> <!-- for IntersectionObserver -->
+  
+  
+  
+  
+
+
+<style id="note-styling">
+    .note {
+      position: absolute;
+      z-index: 10;
+      border: none;
+      outline: none;
+      font-family: inherit;
+      font-size: inherit;
+      padding: 5px;
+      min-width: 32px;
+      min-height: 32px;
+    }
+    .note:focus {
+      z-index: 11;
+    }
+    .note[type="0"] {
+      background-color: #fff740;
+      color: #2c2c2d;
+    }
+    .note[type="0"]::placeholder {
+      color: #868226;
+    }
+    .note[type="1"] {
+      background-color: #feff9c;
+      color: #2c2c2d;
+    }
+    .note[type="1"]::placeholder {
+      color: #6d6d3d;
+    }
+    .note[type="2"] {
+      background-color: #ff65a3;
+      color: #2c2c2d;
+    }
+    .note[type="2"]::placeholder {
+      color: #65263f;
+    }
+    .note[type="3"] {
+      background-color: #ff7eb9;
+      color: #2c2c2d;
+    }
+    .note[type="3"]::placeholder {
+      color: #562b3f;
+    }
+    .note[type="4"] {
+      background-color: #7afcff;
+      color: #295c5d;
+    }
+    .note[type="4"]::placeholder {
+      color: #377677;
+    }</style></body><style>body {
+      font-size:  15px;
+      font-family: Helvetica, Arial, sans-serif;
+      width: 600px;
+    }
+    p {
+      text-align: justify
+    }
+    .page {
+      line-height: 22.5px;
+      column-count: unset;
+    }
+    h1, h2, h3 {
+      line-height: initial;
+    }</style></html>
